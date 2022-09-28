@@ -1,0 +1,8 @@
+# IDE files
+.idea/
+.vscode
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
