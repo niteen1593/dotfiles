@@ -1,0 +1,18 @@
+# Start a PHP server from a directory, optionally specifying the port
+function phpserver() {
+	local port="${1:-8000}"
+	sleep 2 && open "http://localhost:${port}/" &
+	php -S "${ip}:${port}"
+}
+
+function db {
+    if [ "$1" = "refresh" ]; then
+        mysql -uroot -e "drop database $2; create database $2"
+    elif [ "$1" = "create" ]; then
+        mysql -uroot -e "create database $2"
+    elif [ "$1" = "drop" ]; then
+        mysql -uroot -e "drop database $2"
+    elif [ "$1" = "list" ]; then
+        mysql -uroot -e "show databases" | perl -p -e's/\|| *//g'
+    fi
+}

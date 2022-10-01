@@ -1,3 +1,24 @@
 # zsh
 alias zshconfig="vi ~/.zshrc"
 alias zshreload="source ~/.zshrc"
+
+# php
+alias pas="php artisan serve"
+alias switch-php81="brew unlink php@7.4 && brew link --overwrite --force php"
+alias switch-php74="brew unlink php && brew link --overwrite --force php@7.4"
+
+
+# IP addresses
+alias ip="curl https://diagnostic.opendns.com/myip ; echo"
+alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# ssh
+alias sshconfig="vi ~/.ssh/config"
+alias copykey="pbcopy < $HOME/.ssh/id_ed25519.pub"
+
+# mysql
+alias mysqladm='mysql -u root'
+
+# Directories
+alias dotfiles="cd $HOME/.dotfiles"
+alias projects="cd $HOME/Projects"

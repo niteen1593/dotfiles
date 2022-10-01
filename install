@@ -1,0 +1,88 @@
+#!/bin/bash
+#
+# installs things.
+
+function install() {
+# ask password beforehand
+sudo -v
+
+# Hide "last login" line when starting a new terminal session
+touch $HOME/.hushlogin
+
+# Install zsh
+echo 'Install oh-my-zsh'
+echo '-----------------'
+rm -rf $HOME/.oh-my-zsh
+curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# Symlink zsh prefs
+rm $HOME/.zshrc
+ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+
+# Symlink vim prefs
+rm $HOME/.vimrc
+ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
+rm $HOME/.vim
+ln -s $HOME/.dotfiles/shell/.vim $HOME/.vim
+
+echo 'Install wget'
+echo '------------'
+brew install wget
+
+echo 'Install htop'
+echo '------------'
+brew install htop
+
+echo 'Install pkg-config'
+echo '------------------'
+brew install pkg-config
+
+echo 'Install php'
+echo '------------'
+brew update
+brew tap shivammathur/php
+brew tap shivammathur/extensions
+brew install php
+
+echo 'Install imagemagick'
+echo '-------------------'
+brew install imagemagick
+
+echo 'Install imagick'
+echo '---------------'
+brew install shivammathur/extensions/imagick@8.1
+
+echo 'Install memcached'
+echo '-----------------'
+brew install shivammathur/extensions/memcached@8.1
+
+echo 'Install xdebug'
+echo '--------------'
+brew install shivammathur/extensions/xdebug@8.1
+
+echo 'Install redis'
+echo '-------------'
+brew install shivammathur/extensions/redis@8.1
+
+echo 'Install mongodb'
+echo '-------------'
+brew install shivammathur/extensions/mongodb@8.1
+
+# Create a Project directory
+mkdir $HOME/Project
+
+echo '++++++++++++++++++++++++++++++'
+echo '++++++++++++++++++++++++++++++'
+echo 'All done!'
+}
+
+
+echo 'Install .dotfiles'
+echo '------------------'
+echo 'This will reset your terminal. Are you sure you want to do this? (y/n) '
+read -p 'Answer: '  reply
+
+if [[ $reply =~ ^[Yy]$ ]]
+then
+install
+fi
