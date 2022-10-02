@@ -2,28 +2,14 @@
 #
 # installs things.
 
-function install() {
-# ask password beforehand
-sudo -v
+function installMacSoftwares() {
 
-# Hide "last login" line when starting a new terminal session
-touch $HOME/.hushlogin
-
-# Install zsh
-echo 'Install oh-my-zsh'
-echo '-----------------'
-rm -rf $HOME/.oh-my-zsh
-curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-
-# Symlink zsh prefs
-rm $HOME/.zshrc
-ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
-
-# Symlink vim prefs
-rm $HOME/.vimrc
-ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
-rm $HOME/.vim
-ln -s $HOME/.dotfiles/shell/.vim $HOME/.vim
+echo 'Install homebrew'
+echo '----------------'
+sudo rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/nitin/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo 'Install wget'
 echo '------------'
@@ -67,6 +53,50 @@ brew install shivammathur/extensions/redis@8.1
 echo 'Install mongodb'
 echo '-------------'
 brew install shivammathur/extensions/mongodb@8.1
+
+}
+
+function installLinuxSoftwares() {
+
+}
+
+function checkOs() {
+# check os
+os="`uname`"
+
+if [[ $os == 'Darwin']]
+then
+installMacSoftwares
+elif [[ $os == 'Linux']]
+then
+installLinuxSoftwares
+fi
+}
+
+function install() {
+# ask password beforehand
+sudo -v
+
+# Hide "last login" line when starting a new terminal session
+touch $HOME/.hushlogin
+
+# Install zsh
+echo 'Install oh-my-zsh'
+echo '-----------------'
+rm -rf $HOME/.oh-my-zsh
+curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# Symlink zsh prefs
+rm $HOME/.zshrc
+ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+
+# Symlink vim prefs
+rm $HOME/.vimrc
+ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
+rm $HOME/.vim
+ln -s $HOME/.dotfiles/shell/.vim $HOME/.vim
+
+
 
 # Create a Project directory
 mkdir $HOME/Project
