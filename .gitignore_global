@@ -1,7 +1,7 @@
 # IDE files
-.idea/
-.vscode
-.fleet
+/.fleet
+/.idea
+/.vscode
 
 # Logs and databases
 *.log
@@ -25,8 +25,12 @@ npm-debug.log
 yarn-error.log
 
 # PHP
-vendor/
+/vendor
 LocalValetDriver.php
 .phpstorm.meta.php
 _ide_helper.php
 _ide_helper_models.php
+
+# env files
+.env.*
+!.env.example
