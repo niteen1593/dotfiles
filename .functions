@@ -32,3 +32,12 @@ function opendb () {
    echo "Opening ${DB_URL}"
    open $DB_URL
 }
+
+function openapp () {
+   [ ! -f .env ] && { echo "No .env file found."; exit 1; }
+
+   APP_URL=$(grep APP_URL .env | grep -v -e '^\s*#' | cut -d '=' -f 2-)
+
+   echo "Opening ${APP_URL}"
+   open $APP_URL
+}
