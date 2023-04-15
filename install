@@ -99,6 +99,7 @@ ln -s $HOME/.dotfiles/shell/.vim $HOME/.vim
 # Add global gitignore
 ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore_global
 git config --global core.excludesfile $HOME/.gitignore_global
+git config --global core.editor "/usr/bin/vim"
 
 
 # Create a Project directory
