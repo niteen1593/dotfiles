@@ -27,8 +27,16 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Finder: allow text selection in Quick Look
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
-# Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+# Display status bar at bottom
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Display path bar at bottom
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Disable desktop items
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
