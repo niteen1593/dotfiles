@@ -5,7 +5,11 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
 # Enable dragging using trackpad
-defaults write com.apple.AppleMultitouchTrackpad Dragging -bool true
+defaults write com.apple.AppleMultitouchTrackpad Dragging -bool false
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 
 ###############################################################################
