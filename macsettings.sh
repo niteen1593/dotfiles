@@ -17,6 +17,23 @@ sudo pmset -a hibernatemode 0
 # Disable the sudden motion sensor as it’s not useful for SSDs
 sudo pmset -a sms 0
 
+
+###############################################################################
+# Dock                                                                        #
+###############################################################################
+
+# Set left as default postion for dock
+defaults write com.apple.dock orientation left
+
+# Prevent applications from bouncing in Dock
+defaults write com.apple.dock no-bouncing -bool true
+
+# set dock to autohide and update autohide delay
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -int 0
+
+
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
@@ -49,9 +66,6 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
-
-# Prevent applications from bouncing in Dock
-defaults write com.apple.dock no-bouncing -bool true
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
