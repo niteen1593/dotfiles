@@ -4,6 +4,9 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Enable Safari’s debug menu
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
+# Enable dragging using trackpad
+defaults write com.apple.AppleMultitouchTrackpad Dragging -bool true
+
 
 ###############################################################################
 # Keyboard tweaks                                                             #
