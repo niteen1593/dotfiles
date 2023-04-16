@@ -1,6 +1,9 @@
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
+# Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
 
 ###############################################################################
 # Keyboard tweaks                                                             #
@@ -32,6 +35,22 @@ sudo pmset -a sms 0
 # Dock                                                                        #
 ###############################################################################
 
+# Wipe all (default) app icons from the Dock
+defaults write com.apple.dock persistent-apps -array ""
+
+
+# Disable recent apps from dock
+defaults write com.apple.dock show-recents -bool false
+
+# Disable app launch animation
+defaults write com.apple.dock launchanim -bool false
+
+# Set dock animation to scale
+defaults write com.apple.dock mineffect scale
+
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
 # Set left as default postion for dock
 defaults write com.apple.dock orientation left
 
@@ -42,11 +61,16 @@ defaults write com.apple.dock no-bouncing -bool true
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -int 0
+defaults write com.apple.dock minimize-to-application -bool true
 
 
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+
+# Set Downloads as the default location for new Finder windows
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"
 
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -64,6 +88,7 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
@@ -79,6 +104,7 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
 
 ###############################################################################
 # Activity Monitor                                                            #
