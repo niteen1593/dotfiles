@@ -16,6 +16,7 @@ brew "starship" # Starship shell prompt
 
 # Fonts
 cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
 
 # Essential applications
 brew "mackup" # Mac backups
