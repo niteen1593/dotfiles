@@ -108,3 +108,6 @@ for file in ~/.dotfiles-custom/.{exports,aliases,functions,zshrc}; do
 [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
+
+# Starship shell promt
+eval "$(starship init zsh)"
