@@ -7,106 +7,27 @@ function installMacSoftwares() {
 echo 'Install homebrew'
 echo '----------------'
 sudo rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "${HOME}/.zprofile"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-
-echo 'Install git'
-echo '------------'
-brew install git
-
-echo 'Install wget'
-echo '------------'
-brew install wget
-
-echo 'Install htop'
-echo '------------'
-brew install htop
-
-echo 'Install pkg-config'
-echo '------------------'
-brew install pkg-config
-
-echo 'Install php'
-echo '------------'
-brew update
-brew tap shivammathur/php
-brew tap shivammathur/extensions
-brew install php
-
-echo 'Install imagick'
-echo '---------------'
-brew install shivammathur/extensions/imagick@8.2
-
-echo 'Install memcached'
-echo '-----------------'
-brew install shivammathur/extensions/memcached@8.2
-
-echo 'Install xdebug'
-echo '--------------'
-brew install shivammathur/extensions/xdebug@8.2
-
-echo 'Install redis'
-echo '-------------'
-brew install redis
-brew install shivammathur/extensions/redis@8.2
-
-echo 'Install mongodb'
-echo '-------------'
-brew tap mongodb/brew
-brew update
-brew install mongodb-community@6.0
-brew install shivammathur/extensions/mongodb@8.2
-
-echo 'Install swoole'
-echo '-------------'
-brew install shivammathur/extensions/swoole@8.2
-
-
-# Install Essential apps
-echo 'Install raycast'
-echo '-------------'
-brew install --cask raycast
-
-echo 'Install warp'
-echo '-------------'
-brew install --cask warp
-
-echo 'Install alt tab'
-echo '-------------'
-brew install --cask alt-tab
-
-echo 'Install stats'
-echo '-------------'
-brew install stats
-
-echo 'Install dbgate'
-echo '-------------'
-brew install --cask dbgate
-
-echo 'Install tableplus'
-echo '-------------'
-brew install --cask tableplus
-
-echo 'Install app cleaner'
-echo '-------------'
-brew install --cask appcleaner
-
+echo 'Install programs with brew'
+echo '----------------'
+brew bundle -v
 }
 
 function installLinuxSoftwares() {
-
+echo "Linux"
 }
 
 function checkOs() {
 # check os
 os="`uname`"
 
-if [[ $os == 'Darwin']]
+if [[ $os == 'Darwin' ]]
 then
 installMacSoftwares
-elif [[ $os == 'Linux']]
+elif [[ $os == 'Linux' ]]
 then
 installLinuxSoftwares
 fi
@@ -129,17 +50,13 @@ curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/in
 rm $HOME/.zshrc
 ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
-# Symlink vim prefs
-rm $HOME/.vimrc
-ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
-rm $HOME/.vim
-ln -s $HOME/.dotfiles/shell/.vim $HOME/.vim
-
 # Add global gitignore
 ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore_global
 git config --global core.excludesfile $HOME/.gitignore_global
 git config --global core.editor "/usr/bin/vim"
 
+# Install essential software's
+checkOs
 
 # Create a Project directory
 mkdir $HOME/Project
