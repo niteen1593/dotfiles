@@ -4,8 +4,6 @@ alias zshreload="source ~/.zshrc"
 
 # php
 alias pas="php artisan serve"
-alias switch-php81="brew unlink php@7.4 && brew link --overwrite --force php"
-alias switch-php74="brew unlink php && brew link --overwrite --force php@7.4"
 
 
 # IP addresses
