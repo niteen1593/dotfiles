@@ -109,5 +109,5 @@ for file in ~/.dotfiles-custom/.{exports,aliases,functions,zshrc}; do
 done
 unset file
 
-# Starship shell promt
+# Starship shell prompt
 eval "$(starship init zsh)"
