@@ -9,23 +9,25 @@ export HISTORY_IGNORE="(ll|ls|cd|cd -|pwd|exit|date|* --help)"
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto"
 
+# Homebrew
+
 # Opt out from homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
-# disble auto update for homebrew
+# Disable auto update for homebrew
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Disable auto update of dependent packages
+HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
+
+# Set brew cleanup age
+HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#volta
+# volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-
-# disable auto update of dependent packages
-HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
-
-# set brew cleanup age
-HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
