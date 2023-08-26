@@ -32,10 +32,8 @@ brew "composer"
 brew "volta"
 
 # Php extensions
-brew "shivammathur/extensions/imagick@8.2"
 brew "shivammathur/extensions/memcached@8.2"
 brew "shivammathur/extensions/xdebug@8.2"
-brew "shivammathur/extensions/redis@8.2"
 brew "shivammathur/extensions/mongodb@8.2"
 brew "shivammathur/extensions/swoole@8.2"
 
@@ -51,5 +49,6 @@ brew "minio" # Local s3 testing tool
 
 
 # Apps
+cask "herd" # Laravel and PHP development environment manager
 cask "tableplus" # Database management tool
 cask "orbstack" # Docker desktop alternative
