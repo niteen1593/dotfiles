@@ -30,7 +30,6 @@ cask "shottr" # Screenshot annotation tool
 
 # Development applications
 brew "php"
-brew "composer"
 brew "volta"
 
 # Php extensions
