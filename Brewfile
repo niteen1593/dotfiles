@@ -13,6 +13,7 @@ brew "htop"
 brew "wget"
 brew "coreutils"
 brew "starship" # Starship shell prompt
+brew "lsd"
 
 # Fonts
 cask "font-jetbrains-mono"
