@@ -64,6 +64,10 @@ checkOs
 # Create a Project directory
 mkdir $HOME/Project
 
+# Symlink starship config
+mkdir -p ~/.config
+ln -s $HOME/.dotfiles/starship.toml $HOME/.config/starship.toml
+
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'
 echo 'All done!'
