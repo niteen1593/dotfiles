@@ -43,6 +43,7 @@ brew "mysql"
 brew "redis"
 brew "postgresql@15"
 brew "mongodb-community@7.0"
+brew "meilisearch"
 
 # testing tools
 brew "mailpit" # Local email testing tool
