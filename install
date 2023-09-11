@@ -61,8 +61,8 @@ git config --global init.defaultBranch main
 # Install essential software's
 checkOs
 
-# Create a Project directory
-mkdir $HOME/Project
+# Create a Projects directory
+mkdir $HOME/Projects
 
 # Symlink starship config
 mkdir -p ~/.config
