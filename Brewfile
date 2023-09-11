@@ -54,5 +54,6 @@ brew "minio" # Local s3 testing tool
 cask "herd" # Laravel and PHP development environment manager
 cask "tableplus" # Database management tool
 cask "orbstack" # Docker desktop alternative
+cask "postman" # Api testing tool
 
 cask "iina" # Video player
