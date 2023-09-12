@@ -42,7 +42,7 @@ brew "shivammathur/extensions/swoole@8.2"
 brew "mysql"
 brew "redis"
 brew "postgresql@15"
-brew "mongodb-community@7.0"
+brew "mongodb/brew/mongodb-community"
 brew "meilisearch"
 
 # testing tools
