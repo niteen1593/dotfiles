@@ -31,3 +31,6 @@ export NVM_DIR="$HOME/.nvm"
 # volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# postgresql
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
