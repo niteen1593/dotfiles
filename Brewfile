@@ -6,6 +6,7 @@ tap "mongodb/brew"
 tap "shivammathur/php"
 tap "shivammathur/extensions"
 tap "minio/stable"
+tap "oven-sh/bun"
 
 # Essential binary
 brew "git"
@@ -31,6 +32,7 @@ cask "shottr" # Screenshot annotation tool
 # Development applications
 brew "php"
 brew "volta"
+brew "oven-sh/bun/bun"
 
 # Php extensions
 brew "shivammathur/extensions/memcached@8.2"
