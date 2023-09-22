@@ -33,6 +33,8 @@ cask "shottr" # Screenshot annotation tool
 brew "php"
 brew "volta"
 brew "oven-sh/bun/bun"
+brew "android-platform-tools"
+brew "scrcpy"
 
 # Php extensions
 brew "shivammathur/extensions/memcached@8.2"
