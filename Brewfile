@@ -31,6 +31,7 @@ cask "shottr" # Screenshot annotation tool
 
 # Development applications
 brew "php"
+brew "composer"
 brew "volta"
 brew "oven-sh/bun/bun"
 brew "android-platform-tools"
