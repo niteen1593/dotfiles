@@ -45,7 +45,7 @@ brew "shivammathur/extensions/swoole@8.3"
 # Databases
 brew "mysql"
 brew "redis"
-brew "postgresql@15"
+brew "postgresql@16"
 brew "mongodb/brew/mongodb-community"
 brew "meilisearch"
 
