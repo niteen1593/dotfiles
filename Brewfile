@@ -37,10 +37,10 @@ brew "android-platform-tools"
 brew "scrcpy"
 
 # Php extensions
-brew "shivammathur/extensions/memcached@8.2"
-brew "shivammathur/extensions/xdebug@8.2"
-brew "shivammathur/extensions/mongodb@8.2"
-brew "shivammathur/extensions/swoole@8.2"
+brew "shivammathur/extensions/memcached@8.3"
+brew "shivammathur/extensions/xdebug@8.3"
+brew "shivammathur/extensions/mongodb@8.3"
+brew "shivammathur/extensions/swoole@8.3"
 
 # Databases
 brew "mysql"
