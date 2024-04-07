@@ -51,7 +51,7 @@ touch $HOME/.hushlogin
 echo 'Install oh-my-zsh'
 echo '-----------------'
 rm -rf $HOME/.oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -L https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 
 # Symlink zsh prefs
 rm $HOME/.zshrc
