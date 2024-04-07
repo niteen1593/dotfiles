@@ -8,4 +8,11 @@ cd .dotfiles
 bash ./install
 ```
 
+To update mac settings use following cmd
+
+```
+cd .dotfiles
+sudo bash ./macsettings.sh
+```
+
 Feel free to create an issue on this repo if you have any questions about them.
