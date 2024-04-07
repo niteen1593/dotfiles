@@ -34,7 +34,6 @@ brew "php"
 brew "composer"
 brew "volta"
 brew "oven-sh/bun/bun"
-brew "android-platform-tools"
 brew "scrcpy"
 
 # Php extensions
@@ -59,5 +58,6 @@ brew "minio" # Local s3 testing tool
 cask "tableplus" # Database management tool
 cask "orbstack" # Docker desktop alternative
 cask "postman" # Api testing tool
+cask "android-platform-tools" # ADB tool
 
 cask "iina" # Video player
