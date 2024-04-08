@@ -33,7 +33,7 @@ cask "shottr" # Screenshot annotation tool
 brew "php"
 brew "composer"
 brew "volta"
-brew "oven-sh/bun/bun"
+brew "bun"
 brew "scrcpy"
 
 # Php extensions
