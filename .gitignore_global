@@ -2,6 +2,7 @@
 /.fleet
 /.idea
 /.vscode
+/.codiumai
 
 # Logs and databases
 *.log
