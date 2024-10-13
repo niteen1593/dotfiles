@@ -3,13 +3,12 @@
 /.idea
 /.vscode
 /.codiumai
+/.zed
 
 # Logs and databases
 *.log
 *.sql
 *.sqlite
-
-
 
 # Mac OS  hidden files
 .DS_Store
