@@ -1,90 +1,80 @@
 #!/usr/bin/env bash
-#
-# installs things.
 
-function installMacSoftwares() {
-# set git credential helper
-git config --global credential.helper osxkeychain
+# Import bash functions
+source ./bash_functions
 
-echo 'Install homebrew'
-echo '----------------'
-sudo rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "${HOME}/.zprofile"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+function install_mac_softwares() {
+  # set git credential helper
+  git config --global credential.helper osxkeychain
 
-echo 'Install programs with brew'
-echo '----------------'
-brew bundle -v
-
-echo 'Install laravel valet'
-echo '----------------'
-composer global require laravel/valet
-valet install
+  # Import mac setup script
+  source ./mac_setup_script_for_homebrew
 }
 
-function installLinuxSoftwares() {
-echo "Linux"
+function install_linux_softwares() {
+  echo "Linux"
 }
 
-function checkOs() {
-# check os
-os="`uname`"
+function check_os() {
+  # check os
+  os="$(uname)"
 
-if [[ $os == 'Darwin' ]]
-then
-installMacSoftwares
-elif [[ $os == 'Linux' ]]
-then
-installLinuxSoftwares
-fi
+  if [[ $os == 'Darwin' ]]; then
+    install_mac_softwares
+  elif [[ $os == 'Linux' ]]; then
+    install_linux_softwares
+  fi
+}
+
+function configure_git() {
+  # Add global gitignore
+  ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore_global
+  git config --global core.excludesfile $HOME/.gitignore_global
+  git config --global core.editor "/usr/bin/vim"
+  git config --global init.defaultBranch main
 }
 
 function install() {
-# ask password beforehand
-sudo -v
+  # ask password beforehand
+  sudo -v
 
-# Hide "last login" line when starting a new terminal session
-touch $HOME/.hushlogin
+  # Hide "last login" line when starting a new terminal session
+  touch $HOME/.hushlogin
 
-# Install zsh
-echo 'Install oh-my-zsh'
-echo '-----------------'
-rm -rf $HOME/.oh-my-zsh
-curl -L https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+  # Install zsh
+  print_blank_line
+  print_info_message 'Install oh-my-zsh'
+  print_info_message '-----------------'
+  rm -rf $HOME/.oh-my-zsh
+  curl -L https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 
-# Symlink zsh prefs
-rm $HOME/.zshrc
-ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+  # Symlink zsh prefs
+  rm $HOME/.zshrc
+  ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
-# Add global gitignore
-ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore_global
-git config --global core.excludesfile $HOME/.gitignore_global
-git config --global core.editor "/usr/bin/vim"
-git config --global init.defaultBranch main
+  # Configure Git
+  configure_git
 
-# Install essential software's
-checkOs
+  # Install essential software's
+  check_os
 
-# Create a Projects directory
-mkdir $HOME/Projects
+  # Create a Projects directory
+  mkdir $HOME/Projects
 
-# Symlink starship config
-mkdir -p ~/.config
-ln -s $HOME/.dotfiles/starship.toml $HOME/.config/starship.toml
+  # Symlink starship config
+  mkdir -p ~/.config
+  ln -s $HOME/.dotfiles/starship.toml $HOME/.config/starship.toml
 
-echo '++++++++++++++++++++++++++++++'
-echo '++++++++++++++++++++++++++++++'
-echo 'All done!'
+  print_blank_line
+  print_info_message '++++++++++++++++++++++++++++++'
+  print_info_message 'All done!'
+  print_info_message '++++++++++++++++++++++++++++++'
 }
 
+print_heading 'Install .dotfiles'
+print_warning_message 'This will reset your terminal. Are you sure you want to do this? (y/n) '
+read -p 'Answer: ' reply
 
-echo 'Install .dotfiles'
-echo '------------------'
-echo 'This will reset your terminal. Are you sure you want to do this? (y/n) '
-read -p 'Answer: '  reply
-
-if [[ $reply =~ ^[Yy]$ ]]
-then
-install
+if [[ $reply =~ ^[Yy]$ ]]; then
+  install
 fi

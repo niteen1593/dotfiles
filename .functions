@@ -33,6 +33,20 @@ function opendb () {
    open $DB_URL
 }
 
+function pdb {
+    local USERNAME="${USER:-postgres}"
+
+    if [ "$1" = "refresh" ]; then
+        psql -U "$USERNAME" -d postgres -c "DROP DATABASE IF EXISTS $2;" -c "CREATE DATABASE $2;"
+    elif [ "$1" = "create" ]; then
+        psql -U "$USERNAME" -d postgres -c "CREATE DATABASE $2;"
+    elif [ "$1" = "drop" ]; then
+        psql -U "$USERNAME" -d postgres -c "DROP DATABASE IF EXISTS $2;"
+    elif [ "$1" = "list" ]; then
+        psql -U "$USERNAME" -d postgres -c "\l" | awk '{ print $1 }' | grep -v "^-*$"
+    fi
+}
+
 function openapp () {
    [ ! -f .env ] && { echo "No .env file found."; exit 1; }
 

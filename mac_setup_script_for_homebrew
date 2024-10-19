@@ -1,0 +1,163 @@
+#!/usr/bin/env bash
+
+BREW_INSTALLER_URL="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+NVM_INSTALLER_URL="https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
+
+function install_composer() {
+    EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    ACTUAL_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+    if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
+        echo >&2 'ERROR: Invalid installer checksum'
+        rm composer-setup.php
+        exit 1
+    fi
+    php composer-setup.php --quiet
+    rm composer-setup.php
+    sudo mkdir -p /usr/local/bin/
+    sudo mv composer.phar /usr/local/bin/composer
+}
+
+print_heading 'Install Homebrew'
+sudo rm ~/.zprofile
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+sudo rm -rf /opt/homebrew/Frameworks/ /opt/homebrew/bin/ /opt/homebrew/etc/ /opt/homebrew/include/ /opt/homebrew/lib/ /opt/homebrew/opt/ /opt/homebrew/sbin/ /opt/homebrew/share/ /opt/homebrew/var/
+sudo rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
+/bin/bash -c "$(curl -fsSL "$BREW_INSTALLER_URL")"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"${HOME}/.zprofile"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+print_blank_line
+print_info_message 'Install programs with Brew'
+print_info_message '----------------'
+
+# Set homebrew taps
+print_blank_line
+print_info_message 'Setup homebrew taps'
+print_info_message '----------------'
+brew tap homebrew/bundle
+brew tap homebrew/services
+brew tap mongodb/brew
+brew tap shivammathur/php
+brew tap shivammathur/extensions
+brew tap oven-sh/bun
+
+# Install essential binaries
+print_blank_line
+print_info_message 'Install essential binaries'
+print_info_message '----------------'
+brew install git
+brew install htop
+brew install wget
+brew install coreutils
+brew install starship # Starship shell prompt
+brew install lsd
+
+# Install fonts
+print_blank_line
+print_info_message 'Install fonts'
+print_info_message '----------------'
+brew install --cask font-jetbrains-mono
+brew install --cask font-jetbrains-mono-nerd-font
+
+# Essential applications
+print_blank_line
+print_info_message 'Install essential applications'
+print_info_message '----------------'
+brew install mackup
+brew install --cask appcleaner # App uninstaller
+brew install --cask warp       # Terminal
+brew install --cask raycast    # Spotlight alternative
+brew install --cask alt-tab    # Switch windows using Alt + Tab keys
+brew install --cask stats      # CPU, GPU, Network stats in menubar
+brew install --cask shottr     # Screenshot annotation tool
+
+# Development applications
+# PHP
+print_blank_line
+print_info_message 'Setup php development environment'
+print_info_message '----------------'
+brew install php
+
+# Php extensions
+brew install shivammathur/extensions/xdebug@8.3
+brew install shivammathur/extensions/mongodb@8.3
+brew install shivammathur/extensions/swoole@8.3
+
+# Composer
+install_composer
+composer global require laravel/valet
+valet install
+
+# Node
+print_blank_line
+print_info_message 'Setup node development environment'
+print_info_message '----------------'
+brew install oven-sh/bun/bun
+brew install deno
+
+# Nvm
+print_blank_line
+print_info_message 'Install nvm'
+print_info_message '----------------'
+# Temporary export nvm variable
+export NVM_DIR="$HOME/.nvm"
+# load nvm to install node
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+curl -o- "$NVM_INSTALLER_URL" | bash
+# Install the latest LTS version of Node.js
+nvm install --lts
+# Use the latest LTS version of Node.js as the default
+nvm alias default 'lts/*'
+
+# Android
+print_blank_line
+print_info_message 'Setup android development environment'
+print_info_message '----------------'
+brew install --cask android-platform-tools # ADB tool
+brew install scrcpy
+
+# Dotnet
+print_blank_line
+print_info_message 'Setup dotnet development environment'
+print_info_message '----------------'
+brew install --cask dotnet-sdk
+
+# Databases
+print_blank_line
+print_info_message 'Setup databases'
+print_info_message '----------------'
+brew install mysql@8.4
+brew install redis
+brew install postgresql@17
+brew install mongodb/brew/mongodb-community
+brew install meilisearch
+
+# Testing tools
+print_blank_line
+print_info_message 'Setup testing tools'
+print_info_message '----------------'
+brew install mailpit # Local email testing tool
+brew install minio   # Local s3 testing tool
+
+# Applications
+print_blank_line
+print_info_message 'Setup GUI applications'
+print_info_message '----------------'
+brew install --cask tableplus # Database management tool
+brew install --cask orbstack  # Docker desktop alternative
+brew install --cask postman   # Api testing tool
+
+# Other Applications
+print_blank_line
+print_info_message 'Setup useful GUI applications'
+print_info_message '----------------'
+brew install --cask iina # Video player
+
+# Clean up brew files
+print_blank_line
+print_info_message 'Cleaning up...'
+print_info_message '----------------'
+brew cleanup --prune=all
