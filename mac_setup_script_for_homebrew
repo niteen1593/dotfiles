@@ -81,9 +81,9 @@ print_info_message '----------------'
 brew install php
 
 # Php extensions
-brew install shivammathur/extensions/xdebug@8.3
-brew install shivammathur/extensions/mongodb@8.3
-brew install shivammathur/extensions/swoole@8.3
+brew install shivammathur/extensions/xdebug@8.4
+brew install shivammathur/extensions/mongodb@8.4
+brew install shivammathur/extensions/swoole@8.4
 
 # Composer
 install_composer
