@@ -88,6 +88,8 @@ brew install shivammathur/extensions/swoole@8.4
 # Composer
 install_composer
 composer global require laravel/valet
+# Temporary export composer vendor path
+export PATH=$HOME/bin:/usr/local/bin:~/.composer/vendor/bin:$PATH
 valet install
 
 # Node
