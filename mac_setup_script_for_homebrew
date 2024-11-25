@@ -103,12 +103,13 @@ brew install deno
 print_blank_line
 print_info_message 'Install nvm'
 print_info_message '----------------'
+# Install nvm
+curl -o- "$NVM_INSTALLER_URL" | bash
 # Temporary export nvm variable
 export NVM_DIR="$HOME/.nvm"
 # load nvm to install node
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-curl -o- "$NVM_INSTALLER_URL" | bash
 # Install the latest LTS version of Node.js
 nvm install --lts
 # Use the latest LTS version of Node.js as the default
