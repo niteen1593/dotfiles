@@ -126,7 +126,7 @@ brew install scrcpy
 print_blank_line
 print_info_message 'Setup dotnet development environment'
 print_info_message '----------------'
-brew install --cask dotnet-sdk
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS
 
 # Databases
 print_blank_line
