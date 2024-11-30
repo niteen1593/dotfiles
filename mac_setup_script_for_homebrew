@@ -164,3 +164,6 @@ print_blank_line
 print_info_message 'Cleaning up...'
 print_info_message '----------------'
 brew cleanup --prune=all
+
+# Setup homebrew permission
+sudo chown -R "$(id -un)":"$(id -gn)" $(brew --prefix)
